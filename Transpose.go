@@ -4,9 +4,9 @@ func main() {
 	var i, j, r, c int 
 	var matrix [10][10]int
 	var transpose [10][10]int
-	   	fmt.Print("Enter the number of rows the matrix: ")
+	   	fmt.Print("Enter the number of rows: ")
 		fmt.Scanln(&r) 
-		fmt.Print("Enter the number of columns th matrix: ") 
+		fmt.Print("Enter the number of columns: ") 
 		fmt.Scanln(&c) 
 		fmt.Println("Enter the matrix elements") 
 		for i = 0; i < r; i++ { 
