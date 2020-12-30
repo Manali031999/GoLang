@@ -21,34 +21,31 @@ func main(){
 	}
 }
 func checkRow(board [9][9]int) bool{
-	var flag bool = true
 	for i:=0;i<9;i++{
 		for j:=0;j<9;j++{
 			for k:=j+1;k<9;k++{
 				if board[i][k]==board[i][j]{
-					flag = false
+					return false
 				}
 			}
 		}
 	}
-	return flag
+	return true
 }
 func checkCol(board [9][9]int) bool{
-	var flag bool = true
 	for i:=0;i<9;i++{
 		for j:=0;j<9;j++{
 			for k:=i+1;k<9;k++{
 				if board[k][j]==board[i][j]{
-					flag = false
+					return false
 				}
 			}
 		}
 	}
-	return flag
+	return true
 } 
 
 func checkBox(board [9][9]int) bool{ 
-	var flag bool = true
 	for i:=0;i<9;i++{
 		for j:=0;j<9;j++{
 			r:=(i/3)*3
@@ -57,26 +54,25 @@ func checkBox(board [9][9]int) bool{
 				for j:=c ; j<c+3; j++{
 					for k:=j+1 ; k<9 ; k++{
 						if board[i][k]==board[i][j]{
-							flag = false
+							return false
 						}
 					}
 					for k:=i+1;k<9 ; k++{
 						if board[k][j]==board[i][j]{
-							flag = false
+							return false
 						}
 					}
 				}
 			}
 		}
 	}
-	return flag
+	return true
 }
 func checkBoard(board [9][9]int) bool{ 
-	var flag bool = true
 	if checkRow(board) && checkCol(board) && checkBox(board){
-		return flag
+		return true
 	}else{
-		flag = false
+		return false
 	}
-	return flag
+	return true
 }
