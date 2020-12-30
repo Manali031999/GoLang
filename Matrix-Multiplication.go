@@ -1,16 +1,26 @@
 package main
 import "fmt"
 func main(){
-	m1:=[3][2]int{
-		[2]int{3,4},
-		[2]int{7,2},
-		[2]int{5,9},
+	m1:=[3][2]int{}
+	m2:=[2][3]int{}
+	fmt.Println("Enter 3x2 matrix:")
+	for i:=0;i<3;i++{
+		for j:=0;j<2;j++{
+			fmt.Scan(&m1[i][j])
+		}
 	}
-	m2:=[2][3]int{
-		[3]int{3,1,5},
-		[3]int{6,9,7},
+	fmt.Println("Enter 2x3 matrix:")
+	for i:=0;i<2;i++{
+		for j:=0;j<3;j++{
+			fmt.Scan(&m2[i][j])
+		}
 	}
+	fmt.Println()
+	mul(m1,m2)
+}
+func mul(m1 [3][2]int , m2 [2][3]int){
 	m3:=[3][3]int{}
+	fmt.Println("Transpose is: ")
 	for i:=0;i<3;i++{
 		for j:=0;j<3;j++{
 			m3[i][j]=0
@@ -26,3 +36,4 @@ func main(){
 		fmt.Println()
 	}
 }
+	
