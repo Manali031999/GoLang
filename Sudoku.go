@@ -20,7 +20,7 @@ func main(){
 		fmt.Println("Invalid")
 	}
 }
-func checkBoard(board [9][9]int) bool{ 
+func checkRow(board [9][9]int) bool{
 	var flag bool = true
 	for i:=0;i<9;i++{
 		for j:=0;j<9;j++{
@@ -31,6 +31,10 @@ func checkBoard(board [9][9]int) bool{
 			}
 		}
 	}
+	return flag
+}
+func checkCol(board [9][9]int) bool{
+	var flag bool = true
 	for i:=0;i<9;i++{
 		for j:=0;j<9;j++{
 			for k:=i+1;k<9;k++{
@@ -40,121 +44,39 @@ func checkBoard(board [9][9]int) bool{
 			}
 		}
 	}
-	for i:=0; i<3;i++{
-		for j:=0;j<3;j++{
-			for k:=j+1;k<9;k++{
-				if board[i][k]==board[i][j]{
-					flag = false
-				}
-			}
-			for k:=i+1;k<9;k++{
-				if board[k][j]==board[i][j]{
-					flag = false
-				}
-			}
-		}
-		for j:=3;j<6;j++{
-			for k:=j+1;k<9;k++{
-				if board[i][k]==board[i][j]{
-					flag = false
-				}
-			}
-			for k:=i+1;k<9;k++{
-				if board[k][j]==board[i][j]{
-					flag = false
-				}
-			}
+	return flag
+} 
 
-		}
-		for j:=6;j<9;j++{
-			for k:=j+1;k<9;k++{
-				if board[i][k]==board[i][j]{
-					flag = false
-				}
-			}
-			for k:=i+1;k<9;k++{
-				if board[k][j]==board[i][j]{
-					flag = false
-				}
-			}
-
-		}
-	}
-	for i:=3;i<6;i++{
-		for j:=0;j<3;j++{
-			for k:=j+1;k<9;k++{
-				if board[i][k]==board[i][j]{
-					flag = false
-				}
-			}
-			for k:=i+1;k<9;k++{
-				if board[k][j]==board[i][j]{
-					flag = false
-				}
-			}
-		}
-		for j:=3;j<6;j++{
-			for k:=j+1;k<9;k++{
-				if board[i][k]==board[i][j]{
-					flag = false
-				}
-			}
-			for k:=i+1;k<9;k++{
-				if board[k][j]==board[i][j]{
-					flag = false
-				}
-			}
-		}
-		for j:=6;j<9;j++{
-			for k:=j+1;k<9;k++{
-				if board[i][k]==board[i][j]{
-					flag = false
-				}
-			}
-			for k:=i+1;k<9;k++{
-				if board[k][j]==board[i][j]{
-					flag = false
+func checkBox(board [9][9]int) bool{ 
+	var flag bool = true
+	for i:=0;i<9;i++{
+		for j:=0;j<9;j++{
+			r:=(i/3)*3
+			c:=(i/3)*3
+			for i:=r ; i<r+3 ; i++{
+				for j:=c ; j<c+3; j++{
+					for k:=j+1 ; k<9 ; k++{
+						if board[i][k]==board[i][j]{
+							flag = false
+						}
+					}
+					for k:=i+1;k<9 ; k++{
+						if board[k][j]==board[i][j]{
+							flag = false
+						}
+					}
 				}
 			}
 		}
 	}
-	for i:=6;i<9;i++{
-		for j:=0;j<3;j++{
-			for k:=j+1;k<9;k++{
-				if board[i][k]==board[i][j]{
-					flag = false
-				}
-			}
-			for k:=i+1;k<9;k++{
-				if board[k][j]==board[i][j]{
-					flag = false
-				}
-			}
-		}
-		for j:=3;j<6;j++{
-			for k:=j+1;k<9;k++{
-				if board[i][k]==board[i][j]{
-					flag = false
-				}
-			}
-			for k:=i+1;k<9;k++{
-				if board[k][j]==board[i][j]{
-					flag = false
-				}
-			}
-		}
-		for j:=6;j<9;j++{
-			for k:=j+1;k<9;k++{
-				if board[i][k]==board[i][j]{
-					flag = false
-				}
-			}
-			for k:=i+1;k<9;k++{
-				if board[k][j]==board[i][j]{
-					flag = false
-				}
-			}
-		}
+	return flag
+}
+func checkBoard(board [9][9]int) bool{ 
+	var flag bool = true
+	if checkRow(board) && checkCol(board) && checkBox(board){
+		return flag
+	}else{
+		flag = false
 	}
 	return flag
 }
