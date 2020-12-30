@@ -1,34 +1,27 @@
 package main
 import "fmt" 
 
-func transpose(matrix [10][10]int,r,c int){
-	var transpose [10][10]int
+func transpose(matrix [][]int,r,c int) [][]int{
+	a:=len(matrix[0])
+	b:=len(matrix)
+	transpose := make([][]int , a)
+	for i:=0; i<a; i++{
+		transpose[i] = make([]int, b)
+	}
 	for i := 0; i < r; i++ {
 		for j := 0; j < c; j++ { 
 			transpose[j][i] = matrix[i][j] 
 		} 
 	}
 	fmt.Println("Transpose of matrix: ") 
-	for i:= 0; i < c; i++ { 
-		for j:= 0; j < r; j++ { 
-			fmt.Print(transpose[i][j], "\t") 
-		} 
-		fmt.Println() 
-	}
+	return transpose
+}
+func main() {
+	matrix :=[][]int{
+		{1,2,3},
+		{4,5,6},
+	} 
+	fmt.Println(transpose(matrix,len(matrix),len(matrix[0])))
 }
 
-func main() {
-	var  r, c int 
-	var matrix [10][10]int
-	fmt.Print("Enter the number of rows the matrix: ")
-	fmt.Scanln(&r) 
-	fmt.Print("Enter the number of columns th matrix: ") 
-	fmt.Scanln(&c) 
-	fmt.Println("Enter the matrix elements") 
-	for i := 0; i < r; i++ { 
-		for j:= 0; j < c; j++ { 
-			fmt.Scan(&matrix[i][j]) 
-		} 
-	}  
-	transpose(matrix,r,c)
-}
+			 
