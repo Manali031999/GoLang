@@ -3,7 +3,7 @@ import (
 	"fmt"
 )
 func main(){
-	board:=[9][9]int{
+	board:=[][]int{
 		{5,3,4,6,7,8,9,1,2},
 		{6,7,2,1,9,5,3,4,8},
 		{1,9,8,3,4,2,5,6,7},
@@ -20,56 +20,44 @@ func main(){
 		fmt.Println("Invalid")
 	}
 }
-func checkRow(board [9][9]int) bool{
-	for i:=0;i<9;i++{
-		for j:=0;j<9;j++{
-			for k:=j+1;k<9;k++{
-				if board[i][k]==board[i][j]{
-					return false
-				}
-			}
+func checkBox(board [][]int) bool {
+	row:=3
+	col:=3
+	a:=make([][]int , row)
+	for i:=0;i<row;i++{
+		a[i]=make([]int,col) 
+		for j:=0;j<col;j++{
+			a[i][j]=board[i][j]
 		}
+	}
+	if checkRowandCol(a){
+		return true  
+	}else{
+		return false
 	}
 	return true
 }
-func checkCol(board [9][9]int) bool{
-	for i:=0;i<9;i++{
-		for j:=0;j<9;j++{
-			for k:=i+1;k<9;k++{
-				if board[k][j]==board[i][j]{
-					return false
-				}
-			}
-		}
-	}
-	return true
-} 
 
-func checkBox(board [9][9]int) bool{ 
-	for i:=0;i<9;i++{
-		for j:=0;j<9;j++{
-			r:=(i/3)*3
-			c:=(i/3)*3
-			for i:=r ; i<r+3 ; i++{
-				for j:=c ; j<c+3; j++{
-					for k:=j+1 ; k<9 ; k++{
-						if board[i][k]==board[i][j]{
-							return false
-						}
-					}
-					for k:=i+1;k<9 ; k++{
-						if board[k][j]==board[i][j]{
-							return false
-						}
-					}
+func checkRowandCol(a [][]int) bool{
+	r,c :=len(a) , len(a[0])
+	for i:=0;i<r;i++{
+		for j:=0;j<c;j++{
+			for k:=j+1;k<r;k++{
+				if a[i][k]==a[i][j]{
+					return false
+				}
+			}
+			for k:=i+1;k<r;k++{
+				if a[k][j]==a[i][j]{
+					return false
 				}
 			}
 		}
 	}
 	return true
 }
-func checkBoard(board [9][9]int) bool{ 
-	if checkRow(board) && checkCol(board) && checkBox(board){
+func checkBoard(board [][]int) bool{ 
+	if checkRowandCol(board) && checkBox(board){
 		return true
 	}else{
 		return false
