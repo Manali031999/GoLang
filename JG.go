@@ -2,34 +2,35 @@ package main
 import "fmt"
 
 func main(){
-	a:=[]int{2,4,3,2,2,0,1}
-	//a:=[]int{1}
-	count:=jump(a)
+	path:=[]int{2,4,3,2,2,0,1}
+	//path:=[]int{0}
+	count:=jump(path)
 	if count==0{
 		fmt.Println("Cannot reach")
 	}else{
-		fmt.Println("Reached",count)
+		fmt.Println("Reached at",count,"counts")
 	}
 }
 
-func jump(a []int) int{
+func jump(path []int) int{
+	length:=len(path)
 	var count int 
 	i:=0
-	for i<len(a){
-		if a[i]==0{
+	for i<length{
+		if path[i]==0{
 			return count
 		}
-		if i== len(a)-1{
+		if i== length-1{
 			return 1
 		}else{
-			b:=a[i]
-			c:=i+b
-				if c >= len(a)-1{
+			value:=path[i]
+			last:=i+value
+				if last >= length-1{
 					count++
 					break
 				}
-			for j:=1;j<=b;j++{
-				if a[i+1]>=a[i]{
+			for j:=1;j<=value;j++{
+				if path[i+1]>=path[i]{
 					i=i+1
 					count++
 					break
