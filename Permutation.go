@@ -1,55 +1,42 @@
-
 package main
 import (
 	"fmt"
 	"strconv"
 )
-var count int = 0
-
-func swap(s string,i,j int) string{
-	var result []byte
-	for k:=0;k<len(s);k++{
-		if k==i{
-			result = append(result,s[j])
-		}else if k==j{
-			result = append(result,s[i])
-		}else{
-			result = append(result,s[k])
-		}
-	}
-	
-	return string(result)
-}
-
-func permutations(str string, i,n ,x int){
-	if i == n-1 {
-		count ++
-		if count == x{
-			println(str)
-		}
-		
-		return
-	}
-	
-	for j:=i;j<n;j++{
-		str = swap(str,i,j)
-		permutations(str,i+1,n,x)
-	}
-
-}
-
 func main() {
-	var(
-		n , x int
-		str string
-	) 
-	fmt.Println("enter Number: ")
+	var n , k int
+	var str string
+	fmt.Println("Enter number:")
 	fmt.Scan(&n)
 	fmt.Println("Enter Position: ")
-	fmt.Scan(&x)
-	for i:=1;i<=n ; i++{
-		str= str+strconv.Itoa(i)
+	fmt.Scan(&k)
+	for i:=1;i<=n;i++{
+		str=str+strconv.Itoa(i)
 	}
-	permutations(str,0,len(str),x)
-	
-} 
+	result:=permutations(str)
+	fmt.Println(result[k-1])
+}
+
+func permutations(str string) []string {
+	le:=len(str)
+	if le == 1 {
+		return []string{str}
+	}
+	current := str[0:1]
+	rem := str[1:]
+	perms := permutations(rem)
+	result := make([]string, 0) 
+	for _, perm := range perms {
+		permLen:=len(perm)
+		for i := 0; i <= permLen; i++ {
+			str := swap(i, current, perm)
+			result = append(result, str)
+		}
+	}
+	return result
+}
+func swap(i int, current string, perm string) string {
+	start := perm[0:i]
+	end := perm[i:len(perm)]
+	return start + current + end
+}
