@@ -21,8 +21,8 @@ func main(){
 
 func print(board map[int][]int){
 	for i:=0;i<9;i++{
-		for _,val:=range board[i+1]{
-			fmt.Print(val," ")
+		for j:=0;j<9;j++{
+			fmt.Print(board[i+1][j]," ")
 		}
 		fmt.Println()
 	}
