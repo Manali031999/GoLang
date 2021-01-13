@@ -1,0 +1,26 @@
+{
+    "tech": [
+        {
+            "id": 1,
+            "techlogy": [
+                {
+                    "tech": "React",
+                    "exp": 3
+                },
+                {
+                    "tech": "GoLang",
+                    "exp": 1.5
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "techlogy": [
+                {
+                    "tech": "Vue",
+                    "exp": 1.5
+                }
+            ]
+        }
+    ]
+}

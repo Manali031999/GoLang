@@ -1,0 +1,20 @@
+{
+    "prsnl": [
+        {
+            "id": 1,
+            "name": "Radha",
+            "add": {
+                "area": "bopal",
+                "country": "IND"
+            }
+        },
+        {
+            "id": 2,
+            "name": "Aniket",
+            "add": {
+                "area": "maninagar",
+                "country": "UK"
+            }
+        }
+    ]
+}
